@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "./auth-context";
 
 const Navbar = ({
   searchQuery,
@@ -7,6 +9,9 @@ const Navbar = ({
   searchHandler,
   saveItems,
 }) => {
+  const authCtx = useContext(AuthContext);
+
+  const isLoggedIn = authCtx.isLoggedIn;
   //Nav link active color
   const navActive = ({ isActive }) => {
     return {
@@ -39,6 +44,19 @@ const Navbar = ({
         />
       </form>
       <ul className="menu flex gap-5">
+        {!isLoggedIn && (
+          <li>
+            <NavLink
+              style={navActive}
+              end
+              to="/login"
+              className="text-gray-400 hover:text-gray-600 duration-300"
+            >
+              Login
+            </NavLink>
+          </li>
+        )}
+
         <li>
           <NavLink
             style={navActive}
@@ -61,16 +79,18 @@ const Navbar = ({
             </span>
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            style={navActive}
-            end
-            to="/login"
-            className="text-gray-400 hover:text-gray-600 duration-300"
-          >
-            Login
-          </NavLink>
-        </li>
+        {isLoggedIn && (
+          <li>
+            <NavLink
+              style={navActive}
+              end
+              to="/logout"
+              className="text-gray-400 hover:text-gray-600 duration-300"
+            >
+              Logout
+            </NavLink>
+          </li>
+        )}
       </ul>
     </div>
   );

@@ -134,6 +134,7 @@ const App = () => {
             path="/login"
             element={<Login />}
           />
+
           <Route
             path="/recipe-item/:id"
             element={
