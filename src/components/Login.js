@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./Login.module.css";
 
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] =
@@ -28,10 +30,16 @@ const AuthForm = () => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
+      navigate("/");
+      alert("Logged In Successfully!!");
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
+      navigate("/");
+      alert(
+        "Account Created Successfully!! Login to continue browsing recipes."
+      );
     }
     fetch(url, {
       method: "POST",
