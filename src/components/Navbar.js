@@ -12,6 +12,10 @@ const Navbar = ({
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  }
   //Nav link active color
   const navActive = ({ isActive }) => {
     return {
@@ -80,10 +84,10 @@ const Navbar = ({
         )}
         {isLoggedIn && (
           <li>
-            <NavLink
+            <NavLink onClick={logoutHandler}
               style={navActive}
               end
-              to="/logout"
+              to="/"
               className="text-gray-400 hover:text-gray-600 duration-300"
             >
               Logout

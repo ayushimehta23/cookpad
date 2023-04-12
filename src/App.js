@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Route,
   Routes,
@@ -15,11 +16,13 @@ import Favourites from "./components/Favourites";
 import RecipeItem from "./components/RecipeItem";
 import NotFoundPage from "./components/NotFoundPage";
 import Login from "./components/Login";
+import AuthContext from "./components/auth-context";
 
 const App = () => {
   const [searchQuery, setSearchQuery] =
     useState("");
   const [recipes, setRecipes] = useState([]);
+  const authCtx = useContext(AuthContext)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [saveItems, setSaveItems] = useState(
@@ -114,7 +117,7 @@ const App = () => {
           searchHandler={searchHandler}
         />
         <Routes>
-          <Route
+          {authCtx.isLoggedIn && <Route
             path="/"
             element={
               <Home
@@ -123,13 +126,13 @@ const App = () => {
                 error={error}
               />
             }
-          />
-          <Route
+          />}
+          {authCtx.isLoggedIn &&<Route
             path="/favourites"
             element={
               <Favourites saveItems={saveItems} />
             }
-          />
+          />}
           <Route
             path="/login"
             element={<Login />}
