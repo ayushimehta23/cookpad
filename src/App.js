@@ -133,12 +133,12 @@ const App = () => {
               <Favourites saveItems={saveItems} />
             }
           />}
-          <Route
+          {!authCtx.isLoggedIn &&<Route
             path="/login"
             element={<Login />}
-          />
-
-          <Route
+          />}
+          
+          {authCtx.isLoggedIn &&<Route
             path="/recipe-item/:id"
             element={
               <RecipeItem
@@ -148,7 +148,7 @@ const App = () => {
                 savedItems={saveItems}
               />
             }
-          />
+          />}
           <Route
             path="*"
             element={<NotFoundPage />}
