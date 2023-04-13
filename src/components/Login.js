@@ -46,7 +46,7 @@ const AuthForm = () => {
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
       navigate("/");
       alert(
-        "Account Created Successfully!! Login to continue browsing recipes."
+        "Account Created Successfully!! You are logged in."
       );
     }
     fetch(url, {
