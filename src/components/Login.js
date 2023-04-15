@@ -39,15 +39,17 @@ const AuthForm = () => {
     if (isLogin) {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
-      navigate("/");
+        navigate("/");
       alert("Logged In Successfully!!");
+      
     } else {
       url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD390EcUYrT0M5ILrJp8pSUeLx6lBwdGss";
-      navigate("/");
+        navigate("/");
       alert(
         "Account Created Successfully!! You are logged in."
       );
+      
     }
     fetch(url, {
       method: "POST",
